@@ -1,0 +1,21 @@
+car:
+  bot:
+    api-url: https://api.telegram.org/
+    webhook-path:
+    token: 6754365076:AAEAmTLm_v-Al78qu6W8FsfYw_hRhIpX2W0
+    name: lisarulit_bot
+    username: lisarulit_car_sales_bot
+
+spring:
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lisarulit_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+
+# ngrok token: 2baisr9U3GoaqLJqQuXkAqiXPwE_rWhKSbyQ5M9bX8xFGJeh
