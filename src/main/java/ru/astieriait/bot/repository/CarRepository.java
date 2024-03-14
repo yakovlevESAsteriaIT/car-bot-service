@@ -5,12 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.astieriait.bot.model.Car;
-import ru.astieriait.bot.model.ShortCarInfo;
+import ru.astieriait.bot.model.projection.ShortCarInfo;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface CarRepository extends JpaRepository<Car, Long> {
+public interface CarRepository extends JpaRepository<Car, UUID> {
     @Query(nativeQuery = true, value = " SELECT c.id, c.brand, c.model, c.price FROM car c " +
             "WHERE c.disable = false " +
             "ORDER BY c.id " +

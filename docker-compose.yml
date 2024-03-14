@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    image: egoryakovlevacc22/lisarulit-car-bot:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/lisarulit_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - WEBHOOK_BOT_TOKEN=6754365076:AAEAmTLm_v-Al78qu6W8FsfYw_hRhIpX2W0
+      - BOT_NAME=lisarulit_bot
+      - BOT_USERNAME=lisarulit_car_sales_bot
+
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=lisarulit_db
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local

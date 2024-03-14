@@ -1,9 +1,10 @@
-package ru.astieriait.bot.model;
+package ru.astieriait.bot.model.projection;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public interface ShortCarInfo {
-    Long getId();
+    UUID getId();
 
     String getBrand();
 

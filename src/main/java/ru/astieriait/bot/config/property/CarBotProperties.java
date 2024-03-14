@@ -1,4 +1,4 @@
-package ru.astieriait.bot.config;
+package ru.astieriait.bot.config.property;
 
 import lombok.Getter;
 import lombok.Setter;

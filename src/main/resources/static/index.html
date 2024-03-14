@@ -1,201 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Интернет-магазин</title>
-    <style>
-        /* Простые стили для магазина */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        nav {
-            background-color: transparent;
-            padding: 10px;
-            text-align: center;
-            border-bottom: 2px solid transparent;
-        }
-        nav a {
-            color: #FF5733;
-            text-decoration: none;
-            padding: 10px;
-            transition: background-color 0.3s;
-        }
-        nav a:hover {
-            background-color: rgba(255, 87, 51, 0.1);
-        }
-        .container {
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .product {
-            border: 1px solid #ccc;
-            padding: 5px;
-            margin: 10px;
-            border-radius: 5px;
-            width: 200px;
-            text-align: center;
-        }
-        .product img {
-            max-width: 100%;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            text-align: left;
-            border-radius: 5px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .end-message {
-            text-align: center;
-            margin-top: 20px;
-            font-style: italic;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <nav>
-    <a href="#" onclick="handleClickMenuItem('ALL')">Все</a>
-    <a href="#" onclick="handleClickMenuItem('NEW')">Новые</a>
-    <a href="#" onclick="handleClickMenuItem('SECOND_HAND')">Б/У</a>
+    <a href="#" id="menuItemAll">Все</a>
+    <a href="#" id="menuItemNew">Новые</a>
+    <a href="#" id="menuItemSecondHand">Б/У</a>
 </nav>
-<div class="container" id="productsContainer">
+<div id="backButtonContainer">
+    <button id="backButton">← Назад</button>
 </div>
-
-<!-- Модальное окно -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Связаться с нами</h2>
-        <form>
-            <label for="phone">Телефон:</label><br>
-            <input type="text" id="phone" name="phone" required><br>
-            <label for="name">Имя:</label><br>
-            <input type="text" id="name" name="name" required><br><br>
-            <button type="submit">Отправить</button>
-        </form>
-    </div>
-</div>
-
+<div class="container" id="productsContainer"></div>
 <div class="end-message" id="endMessage"></div>
-
-<script>
-    // JavaScript для открытия и закрытия модального окна
-    const modal = document.getElementById('myModal');
-    const endMessage = document.getElementById('endMessage');
-    let page = 0;
-    let currentCategory = '';
-
-    function openModal() {
-        modal.style.display = "block";
-    }
-
-    function closeModal() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getCars('ALL'); // При загрузке страницы загружаем все товары
-    });
-
-    window.addEventListener('scroll', () => {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            page++;
-            getCars(currentCategory, page);
-        }
-    });
-
-    function handleClickMenuItem(category) {
-        clearProductsContainer();
-        getCars(category);
-    }
-
-    function clearProductsContainer() {
-        const productsContainer = document.getElementById('productsContainer');
-        productsContainer.innerHTML = '';
-    }
-
-    function getCars(category, page = 0) {
-        currentCategory = category;
-        const size = 10;
-        fetch(`/cars?category=${category}&page=${page}&size=${size}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.length === 0) {
-                    endMessage.innerText = 'Пока на этом всё';
-                } else {
-                    endMessage.innerText = '';
-                    const productsContainer = document.getElementById('productsContainer');
-                    data.forEach(product => {
-                        const productCard = `
-                            <div class="product">
-                                <img src="${product.image}" alt="${product.name}">
-                                <h2>${product.name}</h2>
-                                <p>Цена: ${product.price}</p>
-                                <button onclick="openModal()">Подробнее</button>
-                            </div>
-                        `;
-                        productsContainer.insertAdjacentHTML('beforeend', productCard); // Добавляем карточку товара в контейнер
-                    });
-                }
-            })
-            .catch(error => console.error('Ошибка:', error));
-    }
-</script>
+<div id="productDetails" style="display:none;"></div>
+<script src="script/scripts.js"></script>
 </body>
 </html>

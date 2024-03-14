@@ -1,10 +1,12 @@
 car:
+  web-app:
+    host: ${WEB_APP_HOST}
   bot:
     api-url: https://api.telegram.org/
     webhook-path:
-    token: 6754365076:AAEAmTLm_v-Al78qu6W8FsfYw_hRhIpX2W0
-    name: lisarulit_bot
-    username: lisarulit_car_sales_bot
+    token: ${WEBHOOK_BOT_TOKEN}
+    name: ${BOT_NAME}
+    username: ${BOT_USERNAME}
 
 spring:
   jpa:
@@ -16,6 +18,20 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-
-
+#  ssl:
+#    bundle:
+#      jks:
+#        server:
+#          key:
+#            alias: "1"
+#          keystore:
+#            location: "classpath:cert/server.p12"
+#            password: "Molly2009"
+#            type: "PKCS12"
+#
+#
+#server:
+#  ssl:
+#    bundle: "server"
+#    enabled-protocols: TLSv1.3
 # ngrok token: 2baisr9U3GoaqLJqQuXkAqiXPwE_rWhKSbyQ5M9bX8xFGJeh

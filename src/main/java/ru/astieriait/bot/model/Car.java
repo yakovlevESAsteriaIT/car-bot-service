@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,8 +17,8 @@ import java.math.BigDecimal;
 @Entity
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String brand;
     private String model;
     private Integer year;
@@ -30,4 +31,6 @@ public class Car {
     private Boolean fourWheelDrive;
     @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
     private SecondHandCarDetails secondHandCarDetails;
+    @Column(name = "google_drive_video_id")
+    private String googleDriveVideoId;
 }

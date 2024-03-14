@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "second_hand_car_details")
 @Getter
@@ -14,8 +16,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SecondHandCarDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @Column(name = "owners_amount")
     private Integer ownersAmount;
     private Integer mileage;

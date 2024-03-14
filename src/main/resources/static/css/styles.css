@@ -1,0 +1,155 @@
+/* Основные стили */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+}
+
+#backButtonContainer {
+    position: relative; /* Относительное позиционирование для контейнера кнопки "Назад" */
+}
+
+#backButton {
+    position: relative; /* Абсолютное позиционирование для самой кнопки */
+    top: 10px; /* Отступ сверху для кнопки */
+    left: 10px; /* Отступ слева для кнопки */
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 0px;
+    cursor: pointer;
+    display: none;
+    border: none; /* Убираем рамку */
+}
+
+#productDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 60px; /* Отступ сверху, чтобы учесть кнопку "Назад" */
+    width: 100%; /* Или максимальная ширина контента */
+}
+
+nav {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.active {
+    border: 2px solid #007bff; /* Выделение рамкой */
+    color: #007bff; /* Цвет текста */
+    padding: 8px 18px; /* Уменьшите padding, учитывая добавленную рамку */
+    background-color: transparent; /* Прозрачный фон */
+}
+
+nav a {
+    color: white;
+    background-color: #007bff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0; /* Или другое значение, если вы хотите немного скругленные углы */
+    margin: 0 15px; /* Увеличено с 0 10px для добавления пространства между ссылками */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product button {
+    display: flex; /* Элемент ведет себя как блочный */
+    margin: 10px auto; /* Верхний и нижний отступы 10px, автоматическое выравнивание по горизонтали */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+nav a:hover, .btn-group button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для контейнеров и карточек товаров */
+.container {
+    display: flex;
+    flex-direction: column; /* Стекаем элементы вертикально */
+    align-items: center; /* Выравниваем элементы по центру по горизонтали */
+    padding: 20px;
+}
+
+.product, .product-detail-container {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product {
+    /* Остальные стили оставляем без изменений */
+    width: 80%; /* Можно задать фиксированную ширину или в процентах для контроля размера карточек */
+    margin: 15px auto; /* Добавляем автоматический отступ слева и справа, чтобы выровнять по центру */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0; /* Уже убрали скругление, как вы просили ранее */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Стили для модальных окон */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Дополнительные стили для страницы товара */
+.product-gallery img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.product-info h1, .product-info p {
+    color: #343a40;
+}
+
+/* Подключите этот CSS файл в ваши HTML файлы, чтобы применить стили */
